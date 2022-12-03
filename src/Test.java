@@ -23,10 +23,9 @@ public class Test {
             Connection con = DBConnection.getConnection();
             
             // 3.Create Statement
-            String query = "INSERT INTO person VALUES(? , ?)";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, 9);
-            st.setString(2, "Devin");
+            CallableStatement st = con.prepareCall("{call insertPerson(?,?)}");
+            st.setInt(1, 4);
+            st.setString(2, "Arya");
             
             // 4.Execute Query 
             int i = st.executeUpdate();
@@ -37,11 +36,6 @@ public class Test {
             
             // 5.Close connection
             con.close();
-//            if (flag) {
-//                System.out.println("Name exists");
-//            }else {
-//               System.out.println("Name not found");
-//            }
         }
         catch(Exception e)
         {
