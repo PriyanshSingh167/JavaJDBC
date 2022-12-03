@@ -9,6 +9,10 @@
  * @author roste
  */
 
+import com.connection.DBConnection;
+import java.sql.*;
+import java.util.Scanner;
+
 // @Insert Operation
 
 
@@ -22,14 +26,6 @@
 //        String name = sc.nextLine();
 //        try
 //        {
-//            // 1.Register driver class , If driver is not registered then ClassNotFound will be generated 
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            
-//            // 2.Create Connection
-//            String path = "jdbc:mysql://localhost:3306/student";
-//            String username = "root";
-//            String password = "sqlpassword";
-//            Connection con = DriverManager.getConnection(path, username, password);
 //            
 //            // 3.Create Statement
 //            Statement at = con.createStatement();
@@ -59,14 +55,7 @@
 //
 //        try
 //        {
-//            // 1.Register driver class , If driver is not registered then ClassNotFound will be generated 
-//            Class.forName("com.mysql.cj.jdbc.Driver");
 //            
-//            // 2.Create Connection
-//            String path = "jdbc:mysql://localhost:3306/student";
-//            String username = "root";
-//            String password = "sqlpassword";
-//            Connection con = DriverManager.getConnection(path, username, password);
 //            
 //            // 3.Create Statement
 //            Statement at = con.createStatement();
@@ -94,8 +83,6 @@
 
 
 // @ Search Query
-import java.sql.*;
-import java.util.Scanner;
 public class Test {
     public static void main(String [] args) {
 //        Scanner sc = new Scanner(System.in);
@@ -104,14 +91,7 @@ public class Test {
 //        boolean flag = false;
         try
         {
-            // 1.Register driver class , If driver is not registered then ClassNotFound will be generated 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            // 2.Create Connection
-            String path = "jdbc:mysql://localhost:3306/student";
-            String username = "root";
-            String password = "sqlpassword";
-            Connection con = DriverManager.getConnection(path, username, password);
+            Connection con = DBConnection.getConnection();
             
             // 3.Create Statement
             Statement at = con.createStatement();
@@ -144,7 +124,7 @@ public class Test {
             // C. Applying LIMIT
             
             while (res.next()){
-                System.out.print(res.getInt("id") + " " + res.getString("Name"));
+                System.out.println(res.getInt("id") + " " + res.getString("Name"));
             }
             // 5.Close connection
             con.close();
